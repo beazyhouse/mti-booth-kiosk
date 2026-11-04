@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#000000">
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="brand/icon-192.png">
+<link rel="apple-touch-icon" href="brand/icon-192.png">
+<title>MUAY THAI INTELLIGENCE · kiosk</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ===================== ATTRACT ===================== -->
+  <section id="attract" class="screen active">
+    <video class="bg-video" id="attractBg" autoplay muted loop playsinline preload="auto"></video>
+    <div class="bg-shade"></div>
+    <header class="a-top">
+      <div class="live-dot" id="attractKicker"></div>
+    </header>
+    <div class="a-mid">
+      <h1 class="a-logo"><img src="brand/mti_lockup_white.png" alt="MUAY THAI INTELLIGENCE"></h1>
+      <div class="a-sub">ข้อมูลการเคลื่อนไหวของนักมวยระดับตำนาน</div>
+      <div class="a-band">
+        <video id="attractReel" autoplay muted loop playsinline preload="auto"></video>
+        <i class="bc tl"></i><i class="bc tr"></i><i class="bc bl"></i><i class="bc br"></i>
+      </div>
+      <div class="a-chips" id="attractChips"></div>
+    </div>
+    <div class="a-bottom">
+      <div class="tap"><span class="ring"></span><span class="ring r2"></span><span class="dot"></span></div>
+      <div class="tap-text"><b>แตะเพื่อดูว่าระบบทำงานยังไง</b><span>TAP TO SEE HOW IT WORKS</span></div>
+      <div class="ticker" id="attractTicker"></div>
+      <div class="powered"><span>POWERED BY</span><img src="brand/partners/originals.png" alt="ORIGINALS STUDIO" class="mono"></div>
+    </div>
+  </section>
+
+  <!-- ===================== HOME ===================== -->
+  <section id="home" class="screen">
+    <div class="grain"></div>
+    <header class="topbar">
+      <img class="top-logo" src="brand/mti_lockup_white.png" alt="MUAY THAI INTELLIGENCE">
+      <div class="clock"><b id="clockTime">--:--</b><span id="clockDate"></span></div>
+    </header>
+    <div class="h-intro">
+      <div class="kicker">HOW IT WORKS · ระบบทำงานยังไง</div>
+      <h2>จากเทป จากสตูดิโอ<br><em>สู่เวทีจริง</em></h2>
+      <div class="axis" id="axis"></div>
+    </div>
+    <div class="tracks" id="trackCards"></div>
+    <div class="row3">
+      <button class="tile tile-partners" data-go="partners">
+        <div class="tile-k">PARTNERS · พาร์ทเนอร์</div>
+        <div class="logo-strip" id="logoStrip"></div>
+        <div class="tile-arrow">→</div>
+      </button>
+      <button class="tile tile-today" data-go="schedule">
+        <div class="tile-k">TODAY · วันนี้ใครมา</div>
+        <div class="tile-v small" id="todayPreview">—</div>
+        <div class="tile-arrow">→</div>
+      </button>
+    </div>
+    <footer class="h-foot"><span>POWERED BY</span><img src="brand/partners/originals.png" alt="ORIGINALS STUDIO" class="mono"></footer>
+  </section>
+
+  <!-- ===================== TRACK (How it works) ===================== -->
+  <section id="track" class="screen">
+    <div class="grain"></div>
+    <header class="topbar">
+      <button class="back" data-go="home"><span>←</span> กลับ</button>
+      <img class="top-logo sm" src="brand/mti_lockup_white.png" alt="">
+    </header>
+    <div class="t-head">
+      <div class="t-no" id="tNo"></div>
+      <h2 id="tTitle"></h2>
+      <div class="t-th" id="tTh"></div>
+      <div class="t-partner" id="tPartner"></div>
+      <div class="t-flow" id="tFlow"></div>
+    </div>
+    <div class="t-stage">
+      <video id="trackVideo" muted playsinline loop preload="auto"></video>
+      <div class="t-stepbadge" id="tBadge"></div>
+      <div class="t-prog"><div id="tProg"></div></div>
+    </div>
+    <div class="t-step">
+      <div class="t-step-k" id="sK"></div>
+      <h3 id="sTh"></h3>
+      <p id="sDesc"></p>
+      <div class="t-get" id="sGet"></div>
+      <div class="t-note" id="sNote"></div>
+    </div>
+    <div class="t-nav">
+      <button class="navbtn" id="stepPrev" aria-label="prev">‹</button>
+      <div class="dots" id="stepDots"></div>
+      <button class="navbtn next" id="stepNext" aria-label="next">›</button>
+    </div>
+    <div class="t-list" id="stepList"></div>
+  </section>
+
+  <!-- ===================== PLAYER ===================== -->
+  <section id="player" class="screen">
+    <div class="grain"></div>
+    <header class="topbar">
+      <button class="back" id="playerBack"><span>←</span> กลับ</button>
+      <img class="top-logo sm" src="brand/mti_lockup_white.png" alt="">
+    </header>
+    <div class="p-stage">
+      <video id="mainVideo" playsinline preload="auto"></video>
+      <button class="p-big" id="bigPlay" aria-label="play"></button>
+    </div>
+    <div class="p-bar">
+      <div class="p-progress" id="progress"><div class="p-fill" id="progressFill"></div><div class="p-knob" id="progressKnob"></div></div>
+      <div class="p-times"><span id="tCur">0:00</span><span id="tDur">0:00</span></div>
+    </div>
+    <div class="p-controls">
+      <button class="ctl" id="btnRestart" aria-label="restart">↺</button>
+      <button class="ctl main" id="btnPlay" aria-label="play/pause"></button>
+      <button class="ctl" id="btnSound" aria-label="sound">🔊</button>
+    </div>
+    <div class="p-info">
+      <div class="p-no" id="pNo"></div>
+      <h2 id="pTitle"></h2>
+      <div class="p-th" id="pTh"></div>
+      <p id="pDesc"></p>
+    </div>
+  </section>
+
+  <!-- ===================== PARTNERS ===================== -->
+  <section id="partners" class="screen">
+    <div class="grain"></div>
+    <header class="topbar">
+      <button class="back" data-go="home"><span>←</span> กลับ</button>
+      <img class="top-logo sm" src="brand/mti_lockup_white.png" alt="">
+    </header>
+    <div class="s-head">
+      <div class="kicker">TOGETHER WITH</div>
+      <h2>พาร์ทเนอร์<br><em>ของเรา</em></h2>
+      <p class="s-lead">แตะโลโก้เพื่อดูงานที่ทำร่วมกัน</p>
+    </div>
+    <div id="partnerGroups"></div>
+    <div class="pw-big"><span>POWERED BY</span><img src="brand/partners/originals.png" alt="ORIGINALS STUDIO"></div>
+  </section>
+
+  <!-- partner detail -->
+  <div id="sheet" class="sheet" aria-hidden="true">
+    <div class="sheet-back" data-close></div>
+    <div class="sheet-card">
+      <button class="sheet-x" data-close>✕</button>
+      <div class="sheet-logo"><img id="shLogo" alt=""></div>
+      <div class="sheet-line" id="shLine"></div>
+      <div id="shBody"></div>
+    </div>
+  </div>
+
+  <!-- ===================== SCHEDULE ===================== -->
+  <section id="schedule" class="screen">
+    <div class="grain"></div>
+    <header class="topbar">
+      <button class="back" data-go="home"><span>←</span> กลับ</button>
+      <img class="top-logo sm" src="brand/mti_lockup_white.png" alt="">
+    </header>
+    <div class="s-head">
+      <div class="kicker">AT THE BOOTH · 5–8 NOV</div>
+      <h2>วันนี้<br><em>ใครมา?</em></h2>
+    </div>
+    <div class="days" id="days"></div>
+    <div class="slots" id="slots"></div>
+    <div class="s-foot">
+      <div class="s-qr" id="contactQr"></div>
+      <div><b id="cTh"></b><span id="cSub"></span></div>
+    </div>
+  </section>
+
+  <div id="admin-hotspot"></div>
+</div>
+
+<script src="vendor/qrcode.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
