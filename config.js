@@ -3,7 +3,7 @@
 // ข้อความทุกช่องมี th และ en  |  schedule: ใส่ {time,name,role} ต่อวัน แล้วจะขึ้นแถบ TODAY หน้าแรก
 // ============================================================
 window.KIOSK = {
- "idleSeconds": 60,
+ "idleSeconds": 45,
  "attract": {
   "bg": "media/bg_vertical.mp4",
   "reel": "media/muaythai_intel.mp4"
@@ -70,12 +70,60 @@ window.KIOSK = {
    "en": "Scan to see more"
   },
   "next": {
-   "th": "ถัดไป",
-   "en": "Next"
+   "th": "ขั้นต่อไป",
+   "en": "Next step"
   },
   "done": {
    "th": "กลับหน้าหลัก",
    "en": "Back to home"
+  },
+  "navBack": {
+   "th": "ย้อนกลับ",
+   "en": "Back"
+  },
+  "navHome": {
+   "th": "หน้าหลัก",
+   "en": "Home"
+  },
+  "navPartners": {
+   "th": "พาร์ทเนอร์",
+   "en": "Partners"
+  },
+  "nextChapter": {
+   "th": "บทต่อไป",
+   "en": "Next chapter"
+  },
+  "hint": {
+   "th": "แตะหัวข้อที่สนใจ เพื่อดูวิดีโอและคำอธิบาย",
+   "en": "Tap any topic to see the video and how it works"
+  },
+  "demo": {
+   "th": "กำลังสาธิต · แตะหน้าจอเพื่อใช้งานเอง",
+   "en": "Demo mode · Touch the screen to explore"
+  },
+  "caseKicker": {
+   "th": "ตัวอย่างการใช้งานจริงโดยพาร์ทเนอร์",
+   "en": "PARTNER USE CASE"
+  },
+  "caseTitle": {
+   "th": "SIAM RUMBLE",
+   "en": "SIAM RUMBLE"
+  },
+  "caseSub": {
+   "th": "verse. นำข้อมูลท่ามวยไทยไปสร้างแอนิเมชัน",
+   "en": "verse. turns Muay Thai movement data into animation"
+  },
+  "caseTile": {
+   "th": "ข้อมูลจริง สู่แอนิเมชัน",
+   "en": "From real data to animation"
+  },
+  "sound": {
+   "th": "เปิดเสียง",
+   "en": "Sound on"
+  },
+  "soundOff": {
+   "th": "ปิดเสียง",
+   "en": "Sound off"
   }
  },
  "tracks": [
@@ -555,13 +603,7 @@ window.KIOSK = {
       "line": "AI-GENERATED PRODUCTION",
       "url": "https://www.versemedia.io",
       "urlLabel": "WWW.VERSEMEDIA.IO",
-      "videos": [
-       {
-        "title": "AI SHOWREEL",
-        "video": "media/ai_showreel.mp4",
-        "poster": "media/poster_showreel.jpg"
-       }
-      ]
+      "case": true
      },
      {
       "id": "chyron",
@@ -610,5 +652,11 @@ window.KIOSK = {
   "2026-11-06": [],
   "2026-11-07": [],
   "2026-11-08": []
- }
+ },
+ "case": {
+  "partner": "verse",
+  "video": "media/case_siamrumble.mp4",
+  "poster": "media/p_case_siamrumble.jpg"
+ },
+ "demoAfterSeconds": 12
 };

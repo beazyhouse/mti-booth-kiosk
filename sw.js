@@ -1,6 +1,6 @@
 // MTI kiosk service worker — cache ทุกไฟล์ไว้ในเครื่อง เน็ตหลุดก็ยังเล่นได้
 // แก้ไฟล์แล้ว deploy ใหม่: เปลี่ยน VERSION ให้เครื่องโหลดชุดใหม่
-const VERSION = "mti-v4-20261106";
+const VERSION = "mti-v5-20261106";
 const FILES = [
  "./",
  "index.html",
@@ -37,7 +37,6 @@ const FILES = [
  "fonts/kanit-thai-600-normal.woff2",
  "fonts/kanit-thai-700-normal.woff2",
  "fonts/kanit-thai-800-normal.woff2",
- "media/ai_showreel.mp4",
  "media/arc_2d.mp4",
  "media/arc_3d.mp4",
  "media/arc_3d_a.mp4",
@@ -47,6 +46,7 @@ const FILES = [
  "media/cap_hud.mp4",
  "media/cap_motion.mp4",
  "media/cap_skeleton.mp4",
+ "media/case_siamrumble.mp4",
  "media/muaythai_intel.mp4",
  "media/p_arc_2d.jpg",
  "media/p_arc_3d.jpg",
@@ -56,11 +56,11 @@ const FILES = [
  "media/p_cap_hud.jpg",
  "media/p_cap_motion.jpg",
  "media/p_cap_skeleton.jpg",
+ "media/p_case_siamrumble.jpg",
  "media/p_ring_3d.jpg",
  "media/p_ring_4cam.jpg",
  "media/p_ring_calib.jpg",
  "media/p_use_compare.jpg",
- "media/poster_showreel.jpg",
  "media/ring_3d.mp4",
  "media/ring_4cam.mp4",
  "media/ring_calib.mp4",

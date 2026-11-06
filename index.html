@@ -46,30 +46,23 @@
   <!-- ===================== HOME ===================== -->
   <section id="home" class="screen">
     <div class="grain"></div>
-    <header class="topbar">
-      <img class="top-logo" src="brand/mti_lockup_white.png" alt="MUAY THAI INTELLIGENCE">
-      <button class="lang" data-lang-toggle><span data-v="th">ไทย</span><span data-v="en">EN</span></button>
-    </header>
+    <header class="topbar slim"><img class="top-logo" src="brand/mti_lockup_white.png" alt="MUAY THAI INTELLIGENCE"></header>
     <div class="h-intro">
       <div class="kicker" data-t="homeKicker"></div>
       <h2><span data-t="homeH1"></span><br><em data-t="homeH2"></em></h2>
+      <div class="hint"><span class="hand">☝</span><span data-t="hint"></span></div>
     </div>
     <div class="sec"><b>01–03</b><span data-t="secCapture"></span></div>
     <div class="tracks" id="trackCards"></div>
     <div class="sec"><b>04</b><span data-t="secUse"></span></div>
     <div class="uses" id="useTiles"></div>
-    <footer class="h-foot"><span>POWERED BY</span><img src="brand/partners/originals.png" alt="ORIGINALS STUDIO" class="mono"></footer>
   </section>
 
   <!-- ===================== TRACK ===================== -->
   <section id="track" class="screen">
     <div class="grain"></div>
-    <header class="topbar">
-      <button class="back" data-go="home"><span>←</span><i data-t="back"></i></button>
-      <button class="lang" data-lang-toggle><span data-v="th">ไทย</span><span data-v="en">EN</span></button>
-    </header>
     <div class="t-head">
-      <div class="t-no" id="tNo"></div>
+      <div class="t-row"><div class="t-no" id="tNo"></div><img class="top-logo xs" src="brand/mti_lockup_white.png" alt=""></div>
       <h2 id="tTitle"></h2>
       <div class="t-sub" id="tSub"></div>
     </div>
@@ -85,48 +78,27 @@
       <div class="t-get" id="sG"></div>
       <div class="t-note" id="sN"></div>
     </div>
-    <div class="t-nav">
-      <button class="navbtn" id="stepPrev" aria-label="prev">‹</button>
-      <div class="dots" id="stepDots"></div>
-      <button class="navbtn next" id="stepNext" aria-label="next">›</button>
-    </div>
-    <div class="t-list" id="stepList"></div>
+    <div class="t-tabs" id="stepList"></div>
+    <button class="t-next" id="stepNext"><span id="nextLabel"></span><b>›</b></button>
   </section>
 
-  <!-- ===================== PLAYER ===================== -->
-  <section id="player" class="screen">
-    <div class="grain"></div>
-    <header class="topbar">
-      <button class="back" id="playerBack"><span>←</span><i data-t="back"></i></button>
-      <img class="top-logo sm" src="brand/mti_lockup_white.png" alt="">
-    </header>
-    <div class="p-stage">
-      <video id="mainVideo" playsinline preload="auto"></video>
-      <button class="p-big" id="bigPlay" aria-label="play"></button>
+  <!-- ===================== PARTNER USE CASE (vertical, full screen) ===================== -->
+  <section id="case" class="screen">
+    <video id="caseVideo" playsinline loop preload="auto"></video>
+    <div class="c-shade"></div>
+    <div class="c-top">
+      <div class="c-kicker" data-t="caseKicker"></div>
+      <div class="c-partner"><img id="caseLogo" alt="verse."></div>
+      <h2 class="c-title" data-t="caseTitle"></h2>
+      <div class="c-sub" data-t="caseSub"></div>
     </div>
-    <div class="p-bar">
-      <div class="p-progress" id="progress"><div class="p-fill" id="progressFill"></div><div class="p-knob" id="progressKnob"></div></div>
-      <div class="p-times"><span id="tCur">0:00</span><span id="tDur">0:00</span></div>
-    </div>
-    <div class="p-controls">
-      <button class="ctl" id="btnRestart" aria-label="restart">↺</button>
-      <button class="ctl main" id="btnPlay" aria-label="play/pause"></button>
-      <button class="ctl" id="btnSound" aria-label="sound">🔊</button>
-    </div>
-    <div class="p-info">
-      <div class="p-no" id="pNo"></div>
-      <h2 id="pTitle"></h2>
-      <div class="p-th" id="pTh"></div>
-    </div>
+    <button class="c-sound" id="caseSound"><span id="caseSoundIcon">🔇</span><i id="caseSoundLabel"></i></button>
   </section>
 
   <!-- ===================== PARTNERS ===================== -->
   <section id="partners" class="screen">
     <div class="grain"></div>
-    <header class="topbar">
-      <button class="back" data-go="home"><span>←</span><i data-t="back"></i></button>
-      <button class="lang" data-lang-toggle><span data-v="th">ไทย</span><span data-v="en">EN</span></button>
-    </header>
+    <header class="topbar slim"><img class="top-logo" src="brand/mti_lockup_white.png" alt=""></header>
     <div class="s-head">
       <div class="kicker">TOGETHER WITH</div>
       <h2 data-t="partners"></h2>
@@ -146,7 +118,15 @@
     </div>
   </div>
 
-  <div class="askbar" id="askbar"><i></i><span data-t="ask"></span></div>
+  <!-- bottom navigation (all screens except attract) -->
+  <nav class="nav" id="nav">
+    <button class="nb" id="navBack"><b>←</b><span data-t="navBack"></span></button>
+    <button class="nb" id="navHome"><b>⌂</b><span data-t="navHome"></span></button>
+    <button class="nb" id="navPartners"><b>✦</b><span data-t="navPartners"></span></button>
+    <button class="nb lang" data-lang-toggle><span data-v="th">ไทย</span><span data-v="en">EN</span></button>
+  </nav>
+
+  <div class="demo-banner" id="demoBanner"><i></i><span data-t="demo"></span></div>
   <div id="admin-hotspot"></div>
 </div>
 
