@@ -1,7 +1,8 @@
-// MTI kiosk service worker — cache ทุกไฟล์ไว้ในเครื่อง เน็ตหลุดก็ยังเล่นได้
-// แก้ไฟล์แล้ว deploy ใหม่: เปลี่ยน VERSION ให้เครื่องโหลดชุดใหม่
-const VERSION = "mti-v5-20261106";
-const FILES = [
+// MTI kiosk service worker — caches everything for offline use, one file at a time
+// (a dropped connection keeps what is already saved and resumes later).
+// After changing files: bump VERSION, then push.
+const VERSION = "mti-v5b-20261106";
+const CORE = [
  "./",
  "index.html",
  "app.css",
@@ -37,17 +38,6 @@ const FILES = [
  "fonts/kanit-thai-600-normal.woff2",
  "fonts/kanit-thai-700-normal.woff2",
  "fonts/kanit-thai-800-normal.woff2",
- "media/arc_2d.mp4",
- "media/arc_3d.mp4",
- "media/arc_3d_a.mp4",
- "media/bg_vertical.mp4",
- "media/cap_8cam.mp4",
- "media/cap_bones.mp4",
- "media/cap_hud.mp4",
- "media/cap_motion.mp4",
- "media/cap_skeleton.mp4",
- "media/case_siamrumble.mp4",
- "media/muaythai_intel.mp4",
  "media/p_arc_2d.jpg",
  "media/p_arc_3d.jpg",
  "media/p_arc_3d_a.jpg",
@@ -60,25 +50,56 @@ const FILES = [
  "media/p_ring_3d.jpg",
  "media/p_ring_4cam.jpg",
  "media/p_ring_calib.jpg",
- "media/p_use_compare.jpg",
+ "media/p_use_compare.jpg"
+];
+const MEDIA = [
+ "media/bg_vertical.mp4",
+ "media/muaythai_intel.mp4",
+ "media/arc_2d.mp4",
+ "media/arc_3d.mp4",
+ "media/arc_3d_a.mp4",
+ "media/cap_8cam.mp4",
+ "media/cap_bones.mp4",
+ "media/cap_hud.mp4",
+ "media/cap_motion.mp4",
+ "media/cap_skeleton.mp4",
+ "media/case_siamrumble.mp4",
  "media/ring_3d.mp4",
  "media/ring_4cam.mp4",
  "media/ring_calib.mp4",
  "media/use_compare.mp4"
 ];
+
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(VERSION).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
 });
 self.addEventListener("activate", e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== VERSION).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  e.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k)));
+    await self.clients.claim();
+    fillMedia();
+  })());
 });
+let filling = false;
+async function fillMedia() {
+  if (filling) return; filling = true;
+  const c = await caches.open(VERSION);
+  for (const f of MEDIA) {
+    if (await c.match(f)) continue;
+    try { const r = await fetch(f, { cache: "no-store" }); if (r.ok && r.status === 200) await c.put(f, r); } catch (_) { /* offline: try again later */ }
+  }
+  filling = false;
+}
+self.addEventListener("message", e => { if (e.data === "fill") fillMedia(); });
+
 async function rangeResponse(req, res) {
   const range = req.headers.get("range");
   if (!range) return res;
   const buf = await res.arrayBuffer();
   const m = /bytes=(\d*)-(\d*)/.exec(range);
   const start = m[1] ? +m[1] : 0;
-  const end = m[2] ? +m[2] : buf.byteLength - 1;
+  const end = m[2] ? Math.min(+m[2], buf.byteLength - 1) : buf.byteLength - 1;
   return new Response(buf.slice(start, end + 1), {
     status: 206,
     headers: { "Content-Type": res.headers.get("Content-Type") || "video/mp4",
@@ -89,10 +110,10 @@ self.addEventListener("fetch", e => {
   const req = e.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
-  if (url.origin !== location.origin) return; // Google Sheet CSV ฯลฯ ไปเน็ตตรง
+  if (url.origin !== location.origin) return;
   e.respondWith((async () => {
-    const cache = await caches.open(VERSION);
-    const hit = await cache.match(req.url.split("#")[0], { ignoreSearch: true });
+    const c = await caches.open(VERSION);
+    const hit = await c.match(req.url.split("#")[0], { ignoreSearch: true });
     if (hit) return rangeResponse(req, hit);
     try { return await fetch(req); } catch (_) { return new Response("offline", { status: 503 }); }
   })());

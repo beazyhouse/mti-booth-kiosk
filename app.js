@@ -255,7 +255,12 @@
     taps = taps.filter(t => now - t < 3000).concat(now);
     if (taps.length >= 5) location.reload();
   });
-  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js").catch(() => {});
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+    // resume media caching whenever the connection comes back
+    const fill = () => navigator.serviceWorker.controller && navigator.serviceWorker.controller.postMessage("fill");
+    window.addEventListener("online", fill); setInterval(fill, 5 * 60 * 1000); setTimeout(fill, 8000);
+  }
   setInterval(() => { if (current === "attract") $$("#attract video").forEach(v => v.paused && v.play().catch(() => {})); }, 5000);
   setInterval(renderToday, 60000);
   // long viewing of a video counts as activity (don't drop to attract mid-watch)
